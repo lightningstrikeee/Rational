@@ -13,6 +13,7 @@ class Rational {
      */
     Rational() {
         // to be completed
+
     }
 
     /***
@@ -23,6 +24,8 @@ class Rational {
      */
     Rational(long numerator, long denominator) throws Illegal { 
         // to be completed
+        this.denominator = denominator;
+        this.numerator = numerator;
     }
 
     /***
@@ -60,6 +63,9 @@ class Rational {
      */
     public void subtract(Rational x) {
         // to be completed
+        numerator = (numerator * x.denominator) - (x.numerator * denominator);
+        denominator = (denominator * x.denominator);
+        simplestForm();
     }
 
     /***
@@ -68,6 +74,9 @@ class Rational {
      */
     public void multiply(Rational x) { 
         // to be completed
+        numerator = (numerator * x.numerator);
+        denominator = (denominator * x.denominator);
+        simplestForm();
     }
 
     /***
@@ -76,6 +85,9 @@ class Rational {
      */
     public void divide(Rational x) {
         // to be completed
+        numerator = (numerator * x.denominator);
+        denominator = (denominator * x.numerator);
+        simplestForm();
     }
 
     /***
@@ -85,7 +97,9 @@ class Rational {
      */
     public boolean equals(Object x) {
         // to be completed
-        return true; // TODO: This needs to be modified.
+        if (x.getClass() != this.getClass()) return false;
+        Rational r2 = (Rational)x;
+        return numerator == r2.numerator && denominator == r2.denominator; // TODO: This needs to be modified.
     }
 
     /***
@@ -96,7 +110,12 @@ class Rational {
      */
     public long compareTo(Object x) {
         // to be completed
-        return -1; // TODO: this needs to be modified.
+        if (!x.getClass().equals(this.getClass()))
+            throw new ClassCastException();
+        Rational r2 = (Rational) x;
+        double r1Value = (double) numerator / denominator;
+        double xValue = (double) r2.numerator / r2.denominator;
+        return Double.compare(r1Value, xValue); // TODO: this needs to be modified.
     }
 
     /***
@@ -105,7 +124,7 @@ class Rational {
      */
     public String toString() { 
         // to be completed
-        return ""; // TODO: This needs to be modified.
+        return String.format("%d/%d", numerator, denominator); // TODO: This needs to be modified.
     }
 
     public static void main(String[] args) {
